@@ -1,5 +1,14 @@
 Many libraries have been written to pull things off Youtube. This is one of them.
 
+Installation
+
+The usual: gem install downthetube
+
+then put it in your Gemfile if you are doing Rails stuff with it:
+
+gem 'downthetube'
+
+Usage:
 
 
 irb(main):006:0> playlist = Youtube.playlists_for("stephensam").first
