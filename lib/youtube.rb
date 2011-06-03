@@ -17,14 +17,16 @@ class Youtube
     attr_reader :title, :author, :url, :id
 
     def initialize entry
-      if entry.class == REXML::Element
+      if ((entry) && (entry.class == REXML::Element))
         @xml = entry
         @id = @xml.get_text('yt:playlistId')
         @title =  @xml.get_text('title')
         @author =  @xml.get_text('author/name')
         @xml.each_element_with_attribute('src'){|a| @url = a.attribute('src').to_s }
+      elsif((entry.class==String)&&(entry =~ /\w{16}/))
+	@url = "http://gdata.youtube.com/feeds/api/playlists/#{entry}"
       else
-	raise "What was passed into Playlist class was not an REXML object"
+	raise "The Playlist class did not understand the parameter it was initialized with."
       end
     end
 
@@ -97,6 +99,12 @@ class Youtube
       end
     end
     
+    extend ActiveModel::Naming
+
+    def name
+      "Video"
+    end
+
     
     def thumbnail size=:small
       if size == :large
