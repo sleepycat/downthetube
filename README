@@ -10,30 +10,53 @@ gem 'downthetube'
 
 Usage:
 
+In irb you need to do the requires:
+require 'rubygems'
+require 'downthetube'
 
-irb(main):006:0> playlist = Youtube.playlists_for("stephensam").first
-=> #<Youtube::Playlist:0x7fae33fc06a0 @author="stephensam", @title="Capoeira Angola", @url="http://gdata.youtube.com/feeds/api/playlists/76E01802262A6694", @id="76E01802262A6694", @xml=<entry gd:etag='W/&quot;CUQGR347eCp7ImA9WhZVGEk.&quot;'> ... </>>
-irb(main):007:0> playlist.title
+And then play. I've tried to make it do what you would expect:
+
+irb(main):018:0> pl = Youtube::Playlist.new "76E01802262A6694"
+=> #<Youtube::Playlist:0x7ff91ce51f38 @url="http://gdata.youtube.com/feeds/api/playlists/76E01802262A6694">
+
+irb(main):019:0> playlists = Youtube.playlists_for "stephensam"
+=> [#<Youtube::Playlist:0x7ff91ce214c8 @client=#<GData::Client::YouTube:0x7ff91ce1e9a8 @source="AnonymousApp", @http_service=GData::HTTP::DefaultService, @clientlogin_url="https://www.google.com/youtube/accounts/ClientLogin", @authsub_scope="http://gdata.youtube.com", @version="2", @headers={}, @clientlogin_service="youtube">, @url="http://gdata.youtube.com/feeds/api/playlists/76E01802262A6694", @author="stephensam", @xml=<entry gd:etag='W/&quot;CUQGR347eCp7ImA9WhZVGEk.&quot;'> ... </>, @title="Capoeira Angola", @id="76E01802262A6694">]
+
+irb(main):021:0> playlists.first.title
 => "Capoeira Angola"
-irb(main):008:0> playlist.url
-=> "http://gdata.youtube.com/feeds/api/playlists/76E01802262A6694"
-irb(main):009:0> playlist.videos(1)
-=> [#<Youtube::Video:0x7fae340c4e98 @uploader="cdoucrania", @description="www.cdo.net.ua", @title="Mestre Jogo de Dentro on Capoerando 2010", @duration="218", @url="http://www.youtube.com/watch?v=aoBRfYkEH2w", @id="aoBRfYkEH2w", @small_thumbnail="http://i.ytimg.com/vi/aoBRfYkEH2w/default.jpg", @xml=<entry gd:etag='W/&quot;DUUMRX4_eip7ImA9WhZVGEU.&quot;'> ... </>, @large_thumbnail="http://i.ytimg.com/vi/aoBRfYkEH2w/hqdefault.jpg">]
-irb(main):010:0> video = playlist.videos(1)
-=> [#<Youtube::Video:0x7fae340c4e98 @uploader="cdoucrania", @description="www.cdo.net.ua", @title="Mestre Jogo de Dentro on Capoerando 2010", @duration="218", @url="http://www.youtube.com/watch?v=aoBRfYkEH2w", @id="aoBRfYkEH2w", @small_thumbnail="http://i.ytimg.com/vi/aoBRfYkEH2w/default.jpg", @xml=<entry gd:etag='W/&quot;DUUMRX4_eip7ImA9WhZVGEU.&quot;'> ... </>, @large_thumbnail="http://i.ytimg.com/vi/aoBRfYkEH2w/hqdefault.jpg">]
-irb(main):012:0> video = playlist.videos(1).first
-=> #<Youtube::Video:0x7fae340c4e98 @uploader="cdoucrania", @description="www.cdo.net.ua", @title="Mestre Jogo de Dentro on Capoerando 2010", @duration="218", @url="http://www.youtube.com/watch?v=aoBRfYkEH2w", @id="aoBRfYkEH2w", @small_thumbnail="http://i.ytimg.com/vi/aoBRfYkEH2w/default.jpg", @xml=<entry gd:etag='W/&quot;DUUMRX4_eip7ImA9WhZVGEU.&quot;'> ... </>, @large_thumbnail="http://i.ytimg.com/vi/aoBRfYkEH2w/hqdefault.jpg">
-irb(main):013:0> video.title
-=> "Mestre Jogo de Dentro on Capoerando 2010"
-irb(main):014:0> video.description
-=> "www.cdo.net.ua"
-irb(main):015:0> video.thumbnail(:large)
-=> "http://i.ytimg.com/vi/aoBRfYkEH2w/hqdefault.jpg"
-irb(main):016:0> video.thumbnail
-=> "http://i.ytimg.com/vi/aoBRfYkEH2w/default.jpg"
-irb(main):017:0> video.url
-=> "http://www.youtube.com/watch?v=aoBRfYkEH2w"
-irb(main):018:0> 
+
+irb(main):022:0> playlists.class
+=> Array
+
+irb(main):023:0> vids = playlists.first.videos 2
+=> [#<Youtube::Video:0x7ff91cf63098 @xml=<entry gd:etag='W/&quot;AkQDQ3s-fCp7ImA9WhZUEkk.&quot;'> ... </>>, #<Youtube::Video:0x7ff91cf59bd8 @xml=<entry gd:etag='W/&quot;AkQDQ3s-fCp7ImA9WhZUEkk.&quot;'> ... </>>]
+
+irb(main):024:0> vid = vids.last
+=> #<Youtube::Video:0x7ff91cf59bd8 @xml=<entry gd:etag='W/&quot;AkQDQ3s-fCp7ImA9WhZUEkk.&quot;'> ... </>>
+
+irb(main):025:0> vid.title
+=> "Mestre Jogo De Dentro e Mestra Tisza,Ilheus 2008"
+
+irb(main):026:0> vid.description
+=> "Roda de fim de ano na praca de Ilheus 2008,gravado por CM Denis."
+
+irb(main):027:0> vid.url
+=> "http://www.youtube.com/watch?v=4I_4JgV-y8s"
+
+irb(main):028:0> vid.thumbnail :large
+=> "http://i.ytimg.com/vi/4I_4JgV-y8s/hqdefault.jpg"
+
+irb(main):029:0> itapua = Youtube::Video.new "5Pg6a3TbF68"
+=> #<Youtube::Video:0x7ff91cf097a0 @url="http://gdata.youtube.com/feeds/api/videos/5Pg6a3TbF68?v=2">
+
+irb(main):030:0> itapua.thumbnail
+=> "http://i.ytimg.com/vi/5Pg6a3TbF68/default.jpg"
+
+irb(main):031:0> itapua.title
+=> "Itapuã e Gibi - Roda Lavradio"
+
+irb(main):032:0> itapua.url
+=> "http://www.youtube.com/watch?v=5Pg6a3TbF68"
 
 
 LICENSE:
