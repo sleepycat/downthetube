@@ -35,7 +35,7 @@ module Youtube
             end
           end
         EOM
-        class_eval method_def
+        Video.class_eval method_def
       end
     end
 

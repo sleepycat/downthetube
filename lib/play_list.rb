@@ -49,7 +49,7 @@ module Youtube
             end
           end
         EOM
-        class_eval method_def
+        Playlist.class_eval method_def
       end
     end
   
