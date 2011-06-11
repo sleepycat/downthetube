@@ -58,6 +58,13 @@ irb(main):031:0> itapua.title
 irb(main):032:0> itapua.url
 => "http://www.youtube.com/watch?v=5Pg6a3TbF68"
 
+You can also get the video object to return a hash of its important info by calling to_h:
+
+irb(main):009:0> vid = Youtube::Video.new "QSiGw6noULA"
+=> #<Youtube::Video:0x7fec0cbc9300 @url="http://gdata.youtube.com/feeds/api/videos/QSiGw6noULA?v=2">
+
+irb(main):010:0> vid.to_h
+=> {:title=>"Semente do Jogo de Angola - Tradição - Parte 1", :small_thumbnail=>"http://i.ytimg.com/vi/QSiGw6noULA/default.jpg", :description=>"Video produzido pelo Grupo de capoeira Semente do Jogo de Angola - Mestre Jogo de Dentro\nwww.sementedojogodeangola.org.br", :large_thumbnail=>"http://i.ytimg.com/vi/QSiGw6noULA/hqdefault.jpg", :uploader=>"valmirmauricio", :duration=>"120", :url=>"http://www.youtube.com/watch?v=QSiGw6noULA", :id=>"QSiGw6noULA"}
 
 LICENSE:
 
