@@ -82,6 +82,14 @@ module Youtube
       @xml.to_s
     end
 
+    def to_h
+      h = {}
+      instance_variables.each do |var| 
+        h[var.gsub('@', '').to_sym]= self.instance_variable_get(var.to_sym) unless var == "@client"
+      end
+      h
+    end
+
   end
 end
 
