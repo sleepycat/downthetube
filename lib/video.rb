@@ -86,7 +86,7 @@ module Youtube
       populate_attrs unless @xml
         h = {}
       instance_variables.each do |var| 
-        h[var.gsub('@', '').to_sym]= self.instance_variable_get(var.to_sym) unless %w( @client @xml ).include? var
+        h[var.gsub('@', '').to_sym]= self.instance_variable_get(var.to_sym).to_s unless %w( @client @xml ).include? var
       end
       h
     end
