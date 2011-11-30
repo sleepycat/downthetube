@@ -16,55 +16,15 @@ require 'downthetube'
 
 And then play. I've tried to make it do what you would expect:
 
-irb(main):018:0> pl = Youtube::Playlist.new "76E01802262A6694"
-=> #<Youtube::Playlist:0x7ff91ce51f38 @url="http://gdata.youtube.com/feeds/api/playlists/76E01802262A6694">
-
-irb(main):019:0> playlists = Youtube.playlists_for "stephensam"
-=> [#<Youtube::Playlist:0x7ff91ce214c8 @client=#<GData::Client::YouTube:0x7ff91ce1e9a8 @source="AnonymousApp", @http_service=GData::HTTP::DefaultService, @clientlogin_url="https://www.google.com/youtube/accounts/ClientLogin", @authsub_scope="http://gdata.youtube.com", @version="2", @headers={}, @clientlogin_service="youtube">, @url="http://gdata.youtube.com/feeds/api/playlists/76E01802262A6694", @author="stephensam", @xml=<entry gd:etag='W/&quot;CUQGR347eCp7ImA9WhZVGEk.&quot;'> ... </>, @title="Capoeira Angola", @id="76E01802262A6694">]
-
-irb(main):021:0> playlists.first.title
-=> "Capoeira Angola"
-
-irb(main):022:0> playlists.class
-=> Array
-
-irb(main):023:0> vids = playlists.first.videos 2
-=> [#<Youtube::Video:0x7ff91cf63098 @xml=<entry gd:etag='W/&quot;AkQDQ3s-fCp7ImA9WhZUEkk.&quot;'> ... </>>, #<Youtube::Video:0x7ff91cf59bd8 @xml=<entry gd:etag='W/&quot;AkQDQ3s-fCp7ImA9WhZUEkk.&quot;'> ... </>>]
-
-irb(main):024:0> vid = vids.last
-=> #<Youtube::Video:0x7ff91cf59bd8 @xml=<entry gd:etag='W/&quot;AkQDQ3s-fCp7ImA9WhZUEkk.&quot;'> ... </>>
-
-irb(main):025:0> vid.title
-=> "Mestre Jogo De Dentro e Mestra Tisza,Ilheus 2008"
-
-irb(main):026:0> vid.description
-=> "Roda de fim de ano na praca de Ilheus 2008,gravado por CM Denis."
-
-irb(main):027:0> vid.url
-=> "http://www.youtube.com/watch?v=4I_4JgV-y8s"
-
-irb(main):028:0> vid.thumbnail :large
-=> "http://i.ytimg.com/vi/4I_4JgV-y8s/hqdefault.jpg"
-
-irb(main):029:0> itapua = Youtube::Video.new "5Pg6a3TbF68"
-=> #<Youtube::Video:0x7ff91cf097a0 @url="http://gdata.youtube.com/feeds/api/videos/5Pg6a3TbF68?v=2">
-
-irb(main):030:0> itapua.thumbnail
-=> "http://i.ytimg.com/vi/5Pg6a3TbF68/default.jpg"
-
-irb(main):031:0> itapua.title
-=> "Itapuã e Gibi - Roda Lavradio"
-
-irb(main):032:0> itapua.url
-=> "http://www.youtube.com/watch?v=5Pg6a3TbF68"
-
-You can also get the video object to return a hash of its important info by calling to_h:
-
-irb(main):009:0> vid = Youtube::Video.new "QSiGw6noULA"
-=> #<Youtube::Video:0x7fec0cbc9300 @url="http://gdata.youtube.com/feeds/api/videos/QSiGw6noULA?v=2">
-
-irb(main):010:0> vid.to_h
-=> {:title=>"Semente do Jogo de Angola - Tradição - Parte 1", :small_thumbnail=>"http://i.ytimg.com/vi/QSiGw6noULA/default.jpg", :description=>"Video produzido pelo Grupo de capoeira Semente do Jogo de Angola - Mestre Jogo de Dentro\nwww.sementedojogodeangola.org.br", :large_thumbnail=>"http://i.ytimg.com/vi/QSiGw6noULA/hqdefault.jpg", :uploader=>"valmirmauricio", :duration=>"120", :url=>"http://www.youtube.com/watch?v=QSiGw6noULA", :id=>"QSiGw6noULA"}
+  Youtube::Playlist.new("76E01802262A6694")
+  playlists = Youtube.playlists_for "stephensam"
+  playlists.first.title # "Capoeira Angola"
+  vids = playlists.first.videos 2
+  vid = vids.last
+  vid.title # "Mestre Jogo De Dentro e Mestra Tisza,Ilheus 2008"
+  vid.description # "Roda de fim de ano na praca de Ilheus 2008,gravado por CM Denis."
+  vid.url # "http://www.youtube.com/watch?v=4I_4JgV-y8s"
+  vid.thumbnail(:large) # "http://i.ytimg.com/vi/4I_4JgV-y8s/hqdefault.jpg"
 
 LICENSE:
 
