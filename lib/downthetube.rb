@@ -1,3 +1,3 @@
-require 'youtube'
-require 'play_list'
-require 'video'
+require 'downthetube/youtube'
+require 'downthetube/play_list'
+require 'downthetube/video'
