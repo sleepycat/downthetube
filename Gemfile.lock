@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    downthetube (0.0.9)
+    downthetube (1.0.2)
       gdata_19 (>= 1.0.0)
 
 GEM

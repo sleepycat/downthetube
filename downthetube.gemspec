@@ -1,7 +1,7 @@
 specification = Gem::Specification.new do |spec|
   # Descriptive and source information for this gem.
   spec.name = "downthetube"
-  spec.version = "1.0.1"
+  spec.version = "1.0.2"
   spec.description = "A library to make downloading playlists and videos from Youtube less nasty."
   spec.summary = "Downloads playlists and videos from Youtube."
   spec.author = "Mike Williamson"
