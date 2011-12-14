@@ -37,11 +37,11 @@ module Youtube
         populate_attrs
 
       elsif((entry.class==String)&&(entry =~ /\w{16}/))
-        @url = "http://gdata.youtube.com/feeds/api/playlists/#{entry}"
         @id = entry.to_s
       else
         raise "The Playlist class did not understand the parameter it was initialized with."
       end
+        @url = "http://gdata.youtube.com/feeds/api/playlists/#{@id}"
     end
 
 
@@ -89,7 +89,6 @@ module Youtube
       @title =  @xml.elements['title'].text
       @author =  @xml.elements['author/name'].text
       @human_url = @xml.elements['link'].attribute('href').value
-      @url = @xml.elements.collect('link'){|l| l}[1].attribute('href').value
     end
 
     def define_attrs # :nodoc:
