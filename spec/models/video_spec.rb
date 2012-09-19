@@ -17,6 +17,13 @@ describe Youtube::Video do
     video.duration.should eql("592")
   end
 
+  it "should handle youtube ids with dashes" do
+    vid = File.read "spec/feeds/y-3trPokwJY.xml"
+    FakeWeb.register_uri :get, "http://gdata.youtube.com/feeds/api/videos/y-3trPokwJY?v=2", body: vid
+    video = Youtube::Video.new('y-3trPokwJY')
+    video.id.should eql('y-3trPokwJY')
+  end
+
   it "can be initalized with a rexml element" do 
     besouro_vid = REXML::Document.new(File.read("spec/feeds/besouro_video.xml")).root
 

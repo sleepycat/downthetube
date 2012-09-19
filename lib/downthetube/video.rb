@@ -28,7 +28,7 @@ module Youtube
 
       if entry.class == REXML::Element
         @xml = entry
-      elsif((entry.class == String)&&(entry =~/\w{11}/))
+      elsif((entry.class == String)&&(entry =~/(\w|-){11}/))
         @url = "http://gdata.youtube.com/feeds/api/videos/#{entry}?v=2"
       else
 	raise "What was passed into Playlist class was not an REXML object"
