@@ -7,7 +7,6 @@ specification = Gem::Specification.new do |spec|
   spec.author = "Mike Williamson"
   spec.email = "blessedbyvirtuosity@gmail.com"
   spec.homepage = "http://mikewilliamson.wordpress.com"
-  require 'rake'
   spec.files = %w(README CHANGELOG.md Gemfile Gemfile.lock lib/downthetube.rb lib/downthetube/youtube.rb lib/downthetube/video.rb lib/downthetube/play_list.rb downthetube.gemspec)
   spec.has_rdoc = true
   spec.add_dependency("gdata_19", ">= 1.0.0")
