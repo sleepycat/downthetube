@@ -10,6 +10,8 @@ specification = Gem::Specification.new do |spec|
   spec.files = %w(README CHANGELOG.md Gemfile Gemfile.lock lib/downthetube.rb lib/downthetube/youtube.rb lib/downthetube/video.rb lib/downthetube/play_list.rb downthetube.gemspec)
   spec.has_rdoc = true
   spec.add_dependency("gdata_19", ">= 1.0.0")
+  spec.add_development_dependency('rspec')
+  spec.add_development_dependency('fakeweb')
   spec.extra_rdoc_files = ["README"]
   spec.require_paths = ["lib"]
   spec.test_files = ["spec"]

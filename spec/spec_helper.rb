@@ -1,4 +1,5 @@
 require 'rspec'
+require 'fakeweb'
 require 'bundler/setup'
 require 'downthetube'
 
